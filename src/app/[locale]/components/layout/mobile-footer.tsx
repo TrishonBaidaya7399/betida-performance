@@ -13,7 +13,7 @@ function MobileFooter() {
   const pathname = usePathname();
   const { toggleBrowseOpen, browseOpen } = useSidebarStore();
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-background border-t border-border flex pt-2 mt-0.5 ">
+    <nav className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-background border-t border-border flex pt-2 mt-0.5 ">
       <button
         aria-label="browse"
         onClick={toggleBrowseOpen}

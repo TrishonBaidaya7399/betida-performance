@@ -34,7 +34,6 @@ export default function OverviewContent({
 }: Props) {
   const locale = useLocale();
   const langKey = locale.split("-")[0];
-  console.log({ profile });
   return (
     <div className="text-foreground flex flex-col items-center gap-4 pt-4">
       <div className="w-full rounded-xl overflow-hidden bg-background border border-border px-8 py-6">

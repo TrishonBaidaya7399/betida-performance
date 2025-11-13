@@ -28,7 +28,6 @@ export default async function VipProgressModal() {
   if (!modalData) {
     return <div>Error loading VIP modal data.</div>;
   }
-  console.log("profile in modal:", profile);
   return (
     <VipProgressModalClient
       data={modalData}

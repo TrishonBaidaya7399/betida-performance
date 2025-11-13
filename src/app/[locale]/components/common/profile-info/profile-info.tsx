@@ -20,7 +20,6 @@ export default function ProfileInfo({
   localizedNextLevel, // <-- Use new prop
   profileTitle, // <-- Use new prop
 }: ProfileInfoProps) {
-  console.log("profile in profile info:", profile);
   if (!profile.profile) {
     return (
       <Suspense fallback={<ProfileInfoSkeleton />}>
@@ -29,7 +28,6 @@ export default function ProfileInfo({
     );
   }
   const user = profile.profile;
-  console.log({ userData: user });
 
   return (
     <div className="w-full">

@@ -79,8 +79,7 @@ export default React.memo(function MyBetsArchiveTable({
   }, [totalPages]);
 
   const handleDownload = useCallback((row: ArchiveBetData) => {
-    console.log(`Download archive for ${row.archiveDate}`);
-    toast.info("Download feature is coming soon!");
+    toast.info(`Download archive for ${row.archiveDate}`);
   }, []);
 
   const columns: ColumnType<ArchiveBetData>[] = [

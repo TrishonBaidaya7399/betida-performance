@@ -16,7 +16,7 @@ export default function CookieBanner({
   const [checked, setChecked] = useState(false);
 
   return (
-    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-39 max-w-md w-full px-4 sm:px-0">
+    <div className="fixed bottom-22 md:bottom-6 z-50 left-1/2 -translate-x-1/2 md:z-39 max-w-md w-full px-4 sm:px-0">
       <div className="flex w-full items-center justify-center gap-3 rounded-lg border border-border bg-background-3 px-4 py-3 shadow-lg backdrop-blur-md">
         {/* Checkbox + Label */}
         <label className="flex items-center gap-2 text-sm text-white cursor-pointer select-none">

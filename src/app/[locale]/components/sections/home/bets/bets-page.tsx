@@ -12,12 +12,18 @@ import PointerSVG from "../../../common/svg_icons/pointer-svg";
 // import CryptoIcon from "../../../common/svg_icons/crypto-coins/crypto-icon";
 import dynamic from "next/dynamic";
 // import { GlobalTable3 } from "../../../global-components/global-table/global-table-3";
-const TabLoader = dynamic(() => import("@/app/[locale]/tab-loader"), { ssr: false });
+const TabLoader = dynamic(() => import("@/app/[locale]/tab-loader"), {
+  ssr: false,
+});
 // const BetsTableTabs = dynamic(() => import("./bets-table-tabs"), { ssr: false });
-const CryptoIcon = dynamic(() => import("../../../common/svg_icons/crypto-coins/crypto-icon"), { ssr: false });
+// const CryptoIcon = dynamic(
+//   () => import("../../../common/svg_icons/crypto-coins/crypto-icon"),
+//   { ssr: false }
+// );
 import { Button } from "@/app/[locale]/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { fetchPaginatedBets } from "@/lib/actions/fetch-bets-action";
+import Image from "next/image";
 
 export interface BetsTableProps {
   betsData: {
@@ -32,11 +38,41 @@ const renderPayout = (row: BetData) => {
   const isPositive = payoutValue >= 0;
   return (
     <span
-      className={`inline-flex items-end gap-1 ${isPositive ? "text-success" : "text-destructive"
-        } font-semibold`}
+      className={`inline-flex items-end gap-1 ${
+        isPositive ? "text-success" : "text-destructive"
+      } font-semibold`}
     >
       {row.payout}
-      <CryptoIcon type={(row.type as any) || "default"} />
+      {/* <CryptoIcon type={(row.type as any) || "default"} /> */}
+      {row.type === "bitcoin" ? (
+        <Image
+          src="/icons/bit-coin-svg.svg"
+          alt="pointer"
+          height={16}
+          width={16}
+        />
+      ) : row.type === "ethereum" ? (
+        <Image
+          src="/icons/ethereum-svg.svg"
+          alt="pointer"
+          height={16}
+          width={16}
+        />
+      ) : row.type === "binance" ? (
+        <Image
+          src="/icons/binance-svg.svg"
+          alt="pointer"
+          height={16}
+          width={16}
+        />
+      ) : (
+        <Image
+          src="/icons/pointer-svg.svg"
+          alt="pointer"
+          height={16}
+          width={16}
+        />
+      )}
     </span>
   );
 };
@@ -46,11 +82,41 @@ const renderBetAmount = (row: BetData) => {
   const isPositive = betValue >= 0;
   return (
     <span
-      className={`inline-flex items-end md:items-center gap-1 ${isPositive ? "text-success" : "text-destructive"
-        } font-semibold"`}
+      className={`inline-flex items-end md:items-center gap-1 ${
+        isPositive ? "text-success" : "text-destructive"
+      } font-semibold"`}
     >
       {row.betAmount}
-      <CryptoIcon type={(row.type as any) || "default"} />
+      {/* <CryptoIcon type={(row.type as any) || "default"} /> */}
+      {row.type === "bitcoin" ? (
+        <Image
+          src="/icons/bit-coin-svg.svg"
+          alt="pointer"
+          height={16}
+          width={16}
+        />
+      ) : row.type === "ethereum" ? (
+        <Image
+          src="/icons/ethereum-svg.svg"
+          alt="pointer"
+          height={16}
+          width={16}
+        />
+      ) : row.type === "binance" ? (
+        <Image
+          src="/icons/binance-svg.svg"
+          alt="pointer"
+          height={16}
+          width={16}
+        />
+      ) : (
+        <Image
+          src="/icons/pointer-svg.svg"
+          alt="pointer"
+          height={16}
+          width={16}
+        />
+      )}
     </span>
   );
 };
@@ -62,7 +128,9 @@ const renderMultiplier = (row: BetData) => (
 export default function BetsTable() {
   const t = useTranslations("betsTableColumns");
   const searchParams = useSearchParams();
-  const tab = (searchParams.get("tab") as "casino" | "sports" | "race-leaderboard") || "casino";
+  const tab =
+    (searchParams.get("tab") as "casino" | "sports" | "race-leaderboard") ||
+    "casino";
   // const [data, setData] = useState<BetData[]>(betsData[tab] || []);
 
   // --- 5. SET UP CLIENT-SIDE STATE ---
@@ -75,7 +143,11 @@ export default function BetsTable() {
   // --- 6. FETCH DATA ON THE CLIENT ---
   useEffect(() => {
     startTransition(async () => {
-      const { data, totalPages: fetchedTotalPages } = await fetchPaginatedBets(tab, currentPage, rowsPerPage);
+      const { data, totalPages: fetchedTotalPages } = await fetchPaginatedBets(
+        tab,
+        currentPage,
+        rowsPerPage
+      );
       setPaginatedData(data);
       setTotalPages(fetchedTotalPages);
     });
@@ -157,7 +229,6 @@ export default function BetsTable() {
       render: renderPayout,
     },
   ];
-
 
   return (
     <div className="w-full">

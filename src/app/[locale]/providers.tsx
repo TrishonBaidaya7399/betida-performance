@@ -7,7 +7,7 @@ import { ThemeProvider } from "next-themes";
 import Loading from "@/app/[locale]/loading";
 import RouteLoader from "@/app/[locale]/route-loader";
 import useRouteLoading from "@/hook/use-route-loading";
-import { NextIntlClientProvider, AbstractIntlMessages } from "next-intl";
+import { NextIntlClientProvider, type AbstractIntlMessages } from "next-intl";
 import QueryClientWrapper from "@/providers/QueryClientWrapper";
 
 // This is a small client hook that *must* be inside the NextIntlProvider
